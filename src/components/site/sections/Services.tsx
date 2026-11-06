@@ -1,0 +1,48 @@
+import { Link } from "@tanstack/react-router";
+import { ArrowUpRight, LockKeyhole } from "lucide-react";
+import { Reveal } from "../Reveal";
+import { Container, SectionHeading } from "./SectionHeading";
+import { PRODUCTS, formatPrice } from "@/lib/products";
+
+export function Services() {
+  return (
+    <section className="py-24 sm:py-32" id="solucoes">
+      <Container>
+        <SectionHeading index="02" label="Nossas soluções">
+          Nossas{" "}
+          <span className="text-editorial normal-case italic tracking-[-0.03em]">soluções.</span>
+        </SectionHeading>
+        <p className="-mt-8 mb-14 max-w-xl text-base leading-relaxed text-muted-foreground">
+          Escolha a solução ideal para sua marca. Consulte os detalhes de cada produto e acompanhe as opções disponíveis.
+        </p>
+        <div className="grid border-t border-l border-foreground sm:grid-cols-2 lg:grid-cols-3">
+          {PRODUCTS.map((product, i) => (
+            <Reveal key={product.slug} delay={(i % 3) * 100} className="border-r border-b border-foreground">
+              <Link to="/produto/$slug" params={{ slug: product.slug }} className="group flex h-full min-h-[440px] flex-col">
+                <div className="relative overflow-hidden bg-muted">
+                  <img src={product.image} alt={product.name} loading="lazy" className="aspect-[5/3] w-full object-cover grayscale transition-transform duration-700 group-hover:scale-[1.04]" />
+                  <span className="absolute left-5 top-5 text-label bg-background px-3 py-2">{product.number} / 06</span>
+                </div>
+                <div className="flex flex-1 flex-col justify-between p-7 sm:p-8">
+                  <div>
+                    <p className="text-label text-muted-foreground">{product.category}</p>
+                    <h3 className="text-display mt-4 text-3xl uppercase">{product.name}</h3>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{product.summary}</p>
+                  </div>
+                  <div className="mt-8 flex items-end justify-between gap-3 border-t border-line pt-5">
+                    <div>
+                      <p className="text-label text-muted-foreground">Investimento</p>
+                      <p className="mt-2 text-sm font-semibold">{formatPrice(product.priceCents)}</p>
+                    </div>
+                    <span className="flex items-center gap-2 text-label transition-transform group-hover:translate-x-1">VER PRODUTO <ArrowUpRight className="size-4" /></span>
+                  </div>
+                  {!product.available && <p className="mt-3 flex items-center gap-2 text-xs text-muted-foreground"><LockKeyhole className="size-3" /> Disponibilidade em configuração</p>}
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
