@@ -1,8 +1,14 @@
-import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, LockKeyhole } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "../Reveal";
 import { Container, SectionHeading } from "./SectionHeading";
-import { PRODUCTS, formatPrice } from "@/lib/products";
+import { PRODUCTS } from "@/lib/products";
+
+const WHATSAPP_NUMBER = "5541996304654";
+
+function getServiceWhatsAppUrl(serviceName: string) {
+  const message = `Olá! Tenho interesse no serviço de ${serviceName} da MRS MOREIRA. Gostaria de conversar sobre meu projeto e negociar o valor.`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 
 export function Services() {
   return (
@@ -18,7 +24,7 @@ export function Services() {
         <div className="grid border-t border-l border-foreground sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((product, i) => (
             <Reveal key={product.slug} delay={(i % 3) * 100} className="border-r border-b border-foreground">
-              <Link to="/produto/$slug" params={{ slug: product.slug }} className="group flex h-full min-h-[440px] flex-col">
+              <a href={getServiceWhatsAppUrl(product.name)} target="_blank" rel="noopener noreferrer" className="group flex h-full min-h-[440px] flex-col">
                 <div className="relative overflow-hidden bg-muted">
                   <img src={product.image} alt={product.name} loading="lazy" className="aspect-[5/3] w-full object-cover grayscale transition-transform duration-700 group-hover:scale-[1.04]" />
                   <span className="absolute left-5 top-5 text-label bg-background px-3 py-2">{product.number} / 06</span>
@@ -32,13 +38,12 @@ export function Services() {
                   <div className="mt-8 flex items-end justify-between gap-3 border-t border-line pt-5">
                     <div>
                       <p className="text-label text-muted-foreground">Investimento</p>
-                      <p className="mt-2 text-sm font-semibold">{formatPrice(product.priceCents)}</p>
+                      <p className="mt-2 text-sm font-semibold">Preço negociável</p>
                     </div>
-                    <span className="flex items-center gap-2 text-label transition-transform group-hover:translate-x-1">VER PRODUTO <ArrowUpRight className="size-4" /></span>
+                    <span className="flex items-center gap-2 text-label transition-transform group-hover:translate-x-1">NEGOCIAR NO WHATSAPP <ArrowUpRight className="size-4" /></span>
                   </div>
-                  {!product.available && <p className="mt-3 flex items-center gap-2 text-xs text-muted-foreground"><LockKeyhole className="size-3" /> Disponibilidade em configuração</p>}
                 </div>
-              </Link>
+              </a>
             </Reveal>
           ))}
         </div>
