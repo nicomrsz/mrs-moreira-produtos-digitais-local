@@ -77,7 +77,7 @@ export function DigitalProducts() {
   const ebookCheckout = (import.meta.env.VITE_CAKTO_EBOOK_URL as string | undefined) || "https://pay.cakto.com.br/hks9rws_1292690";
   const promptsCheckout = (import.meta.env.VITE_CAKTO_PROMPTS_URL as string | undefined) || "https://pay.cakto.com.br/z94aeov_1283690";
   const mentoringCheckout = (import.meta.env.VITE_CAKTO_MENTORIA_URL as string | undefined) || "https://pay.cakto.com.br/k48vpwz_1292667";
-  const mentoringImage = import.meta.env.VITE_MENTORIA_IMAGE_URL as string | undefined;
+  const mentoringImage = (import.meta.env.VITE_MENTORIA_IMAGE_URL as string | undefined) || "/mentoria-criacao-sites-com-ia.jpg";
   const mentoringOriginalPrice = import.meta.env.VITE_MENTORIA_PRECO_ORIGINAL as string | undefined;
   const mentoringPromoPrice = (import.meta.env.VITE_MENTORIA_PRECO_PROMOCIONAL as string | undefined) || "279";
 
