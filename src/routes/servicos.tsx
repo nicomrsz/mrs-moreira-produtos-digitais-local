@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageIntro } from "@/components/site/sections/PageIntro";
 import { Services } from "@/components/site/sections/Services";
+import { DigitalProducts } from "@/components/site/sections/DigitalProducts";
 import { Process } from "@/components/site/sections/Process";
 import { CallToAction } from "@/components/site/sections/CallToAction";
 
@@ -37,6 +38,7 @@ function ServicosPage() {
         text="Do conceito ao código: tudo o que sua marca precisa para se destacar no ambiente digital."
       />
       <Services />
+      <DigitalProducts />
       <Process />
       <CallToAction />
     </>
