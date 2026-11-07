@@ -1,6 +1,4 @@
 import { useState } from "react";
-import logoPreto from "@/assets/mrs-moreira-logo-preto.png.asset.json";
-import logoBranco from "@/assets/mrs-moreira-logo-branco.png.asset.json";
 import { cn } from "@/lib/utils";
 
 export function Logo({
@@ -11,7 +9,6 @@ export function Logo({
   className?: string;
 }) {
   const [imageFailed, setImageFailed] = useState(false);
-  const src = tone === "dark" ? logoPreto.url : logoBranco.url;
 
   if (imageFailed) {
     return (
@@ -31,11 +28,15 @@ export function Logo({
 
   return (
     <img
-      src={src}
+      src="/logo.png"
       alt="MRS MOREIRA®"
       width={1000}
       height={265}
-      className={cn("block h-auto w-[130px] object-contain select-none", className)}
+      className={cn(
+        "block h-auto w-[130px] object-contain select-none",
+        tone === "dark" ? "brightness-0" : "brightness-0 invert",
+        className,
+      )}
       draggable={false}
       onError={() => setImageFailed(true)}
     />
