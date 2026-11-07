@@ -103,19 +103,8 @@ export function DigitalProducts() {
             <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#26364D] bg-[#101827] p-6 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.9)] transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/50 hover:shadow-[0_34px_90px_-42px_rgba(37,99,235,0.22)] sm:p-8">
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/70 to-transparent opacity-70" />
               <div className="grid gap-7 sm:grid-cols-[0.78fr_1.22fr] sm:items-center">
-                <div className="relative mx-auto flex aspect-[4/5] w-full max-w-[230px] flex-col justify-between overflow-hidden rounded-2xl border border-blue-300/25 bg-[radial-gradient(circle_at_75%_18%,rgba(59,130,246,0.55),transparent_38%),linear-gradient(145deg,#172B49,#080D18_72%)] p-5 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-                  <div className="flex items-center justify-between text-[9px] font-bold tracking-[0.22em] text-blue-200 uppercase">
-                    <span>MRS MOREIRA®</span><BookOpen className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <div className="mb-3 h-1 w-10 rounded-full bg-blue-400" />
-                    <p className="text-[10px] font-semibold tracking-[0.2em] text-blue-200 uppercase">Guia prático</p>
-                    <h3 className="mt-2 text-2xl leading-[1.05] font-bold tracking-[-0.05em] text-white">Criação e venda de sites <span className="text-blue-300">com IA.</span></h3>
-                  </div>
-                  <div className="flex items-end justify-between">
-                    <span className="text-[9px] tracking-[0.18em] text-slate-400 uppercase">E-book · PDF</span>
-                    <div className="grid h-10 w-10 place-items-center rounded-full border border-blue-300/30 bg-blue-400/10 text-blue-200"><Sparkles className="h-5 w-5" /></div>
-                  </div>
+                <div className="relative mx-auto flex aspect-[4/5] w-full max-w-[230px] items-center justify-center overflow-hidden rounded-2xl border border-blue-300/25 bg-[#080D18] shadow-2xl">
+                  <img src="/Capa-Pack-de-Prompts-para-Sites-Profissionais.png" alt="Capa oficial do Pack de Prompts para Sites Profissionais" loading="lazy" className="h-full w-full object-contain" />
                 </div>
 
                 <div>
