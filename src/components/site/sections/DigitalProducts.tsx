@@ -171,7 +171,9 @@ export function DigitalProducts() {
                   <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.04em] text-white sm:text-[1.75rem]">Pack de Prompts para Sites Profissionais.</h3>
                   <p className="mt-3 text-sm leading-relaxed text-slate-400">Tenha modelos de prompts organizados por nichos para facilitar a criação de sites com inteligência artificial e acelerar o desenvolvimento dos seus projetos.</p>
                   <div className="mt-5 flex flex-wrap items-baseline gap-3">
+                    <span className="text-sm text-slate-500 line-through">R$ 49,90</span>
                     <span className="text-3xl font-bold tracking-[-0.05em] text-white">R$ 29,90</span>
+                    <span className="rounded-md bg-blue-500/15 px-2 py-1 text-[10px] font-bold tracking-wide text-blue-300">40% OFF</span>
                   </div>
                 </div>
               </div>
