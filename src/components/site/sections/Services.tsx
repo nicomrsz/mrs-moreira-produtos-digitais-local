@@ -18,9 +18,17 @@ export function Services() {
           Nossas{" "}
           <span className="text-editorial normal-case italic tracking-[-0.03em]">soluções.</span>
         </SectionHeading>
-        <p className="-mt-8 mb-14 max-w-xl text-base leading-relaxed text-muted-foreground">
-          Escolha a solução ideal para sua marca. Consulte os detalhes de cada produto e acompanhe as opções disponíveis.
-        </p>
+        <div className="-mt-8 mb-14 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
+            Explore nossos serviços personalizados ou conheça os produtos digitais para aprender a criar sites com IA.
+          </p>
+          <a
+            href="#produtos-digitais"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-xs font-bold uppercase tracking-wide text-background transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
+            Ver produtos digitais <ArrowUpRight className="size-4" />
+          </a>
+        </div>
         <div className="grid border-t border-l border-foreground sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((product, i) => (
             <Reveal key={product.slug} delay={(i % 3) * 100} className="border-r border-b border-foreground">
