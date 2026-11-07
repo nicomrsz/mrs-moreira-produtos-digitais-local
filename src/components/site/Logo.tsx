@@ -28,7 +28,7 @@ export function Logo({
 
   return (
     <img
-      src="/logo.png"
+      src="/logo-mrs-branca.png"
       alt="MRS MOREIRA®"
       width={1000}
       height={265}
