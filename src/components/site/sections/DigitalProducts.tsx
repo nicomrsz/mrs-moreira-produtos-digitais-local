@@ -28,6 +28,14 @@ const mentoringBenefits = [
   "Orientações para desenvolver projetos próprios.",
 ];
 
+function formatConfiguredPrice(value?: string) {
+  if (!value?.trim()) return "A definir";
+  const normalized = value.replace(/[^0-9,.-]/g, "").replace(/\./g, "").replace(",", ".");
+  const amount = Number(normalized);
+  if (!Number.isFinite(amount)) return value;
+  return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(amount);
+}
+
 const niches = [
   "Barbearias",
   "Clínicas",
@@ -39,15 +47,12 @@ const niches = [
   "Outros negócios locais",
 ];
 
-function WhatsAppLink({ phone, product, children }: { phone?: string; product: string; children: string }) {
-  const message = `Olá! Tenho interesse no produto: ${product}. Gostaria de conversar para combinar o valor e receber mais informações.`;
-  const href = phone ? `https://wa.me/${phone.replace(/\\D/g, "")}?text=${encodeURIComponent(message)}` : undefined;
-
+function PurchaseLink({ href, children }: { href?: string; children: string }) {
   if (!href) {
     return (
       <span
         aria-disabled="true"
-        title="Configure o número de WhatsApp da loja para ativar este botão."
+        title="Adicione o link de checkout da Cakto no arquivo .env para ativar este botão."
         className="inline-flex min-h-14 cursor-not-allowed items-center justify-center gap-3 rounded-xl border border-blue-400/20 bg-blue-500/40 px-6 text-sm font-bold tracking-wide text-white/65"
       >
         {children} <ArrowUpRight className="h-4 w-4" />
@@ -69,8 +74,12 @@ function WhatsAppLink({ phone, product, children }: { phone?: string; product: s
 }
 
 export function DigitalProducts() {
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined;
+  const ebookCheckout = (import.meta.env.VITE_CAKTO_EBOOK_URL as string | undefined) || "https://pay.cakto.com.br/hks9rws_1292690";
+  const promptsCheckout = (import.meta.env.VITE_CAKTO_PROMPTS_URL as string | undefined) || "https://pay.cakto.com.br/z94aeov_1283690";
+  const mentoringCheckout = (import.meta.env.VITE_CAKTO_MENTORIA_URL as string | undefined) || "https://pay.cakto.com.br/k48vpwz_1292667";
   const mentoringImage = "/Capa-Mentoria-Criacao-de-Sites-com-IA.png";
+  const mentoringOriginalPrice = import.meta.env.VITE_MENTORIA_PRECO_ORIGINAL as string | undefined;
+  const mentoringPromoPrice = (import.meta.env.VITE_MENTORIA_PRECO_PROMOCIONAL as string | undefined) || "279";
 
   return (
     <section id="produtos-digitais" className="relative overflow-hidden bg-[#080B12] py-24 text-white sm:py-32">
@@ -82,7 +91,7 @@ export function DigitalProducts() {
           </div>
           <p className="mb-4 font-mono text-xs tracking-[0.24em] text-blue-400 uppercase">Conhecimento que vira projeto</p>
           <h2 className="text-4xl font-semibold tracking-[-0.055em] text-white sm:text-5xl lg:text-6xl">
-            Nossas soluções<span className="text-blue-400">.</span>
+            Produtos digitais<span className="text-blue-400">.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
             Materiais práticos para criar com inteligência artificial, desenvolver ideias e levar seus projetos para o próximo nível.
@@ -114,7 +123,9 @@ export function DigitalProducts() {
                   <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.04em] text-white sm:text-[1.75rem]">Guia Completo: Criação e Venda de Sites com IA.</h3>
                   <p className="mt-3 text-sm leading-relaxed text-slate-400">Aprenda do zero como utilizar ferramentas de inteligência artificial para criar sites profissionais e desenvolver projetos para empresas e comércios locais.</p>
                   <div className="mt-5 flex flex-wrap items-baseline gap-3">
-                    <span className="text-xl font-semibold tracking-[-0.03em] text-white">Preço negociável</span>
+                    <span className="text-sm text-slate-500 line-through">R$ 29,90</span>
+                    <span className="text-3xl font-bold tracking-[-0.05em] text-white">R$ 19,90</span>
+                    <span className="rounded-md bg-blue-500/15 px-2 py-1 text-[10px] font-bold tracking-wide text-blue-300">33% OFF</span>
                   </div>
                 </div>
               </div>
@@ -130,7 +141,7 @@ export function DigitalProducts() {
               </div>
               <div className="mt-8 flex flex-col gap-3 border-t border-[#26364D] pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-xs text-slate-500">Acesso digital · Formato PDF</span>
-                <WhatsAppLink phone={whatsappNumber} product="Guia Completo: Criação e Venda de Sites com IA">CONVERSAR SOBRE O GUIA</WhatsAppLink>
+                <PurchaseLink href={ebookCheckout}>QUERO ACESSAR O GUIA</PurchaseLink>
               </div>
             </article>
           </Reveal>
@@ -160,7 +171,7 @@ export function DigitalProducts() {
                   <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.04em] text-white sm:text-[1.75rem]">Pack de Prompts para Sites Profissionais.</h3>
                   <p className="mt-3 text-sm leading-relaxed text-slate-400">Tenha modelos de prompts organizados por nichos para facilitar a criação de sites com inteligência artificial e acelerar o desenvolvimento dos seus projetos.</p>
                   <div className="mt-5 flex flex-wrap items-baseline gap-3">
-                    <span className="text-xl font-semibold tracking-[-0.03em] text-white">Preço negociável</span>
+                    <span className="text-3xl font-bold tracking-[-0.05em] text-white">R$ 29,90</span>
                   </div>
                 </div>
               </div>
@@ -183,7 +194,7 @@ export function DigitalProducts() {
               </div>
               <div className="mt-8 flex flex-col gap-3 border-t border-[#26364D] pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-xs text-slate-500">Material digital · Acesso online</span>
-                <WhatsAppLink phone={whatsappNumber} product="Pack de Prompts para Sites Profissionais">CONVERSAR SOBRE O PACK</WhatsAppLink>
+                <PurchaseLink href={promptsCheckout}>QUERO MEU PACK DE PROMPTS</PurchaseLink>
               </div>
             </article>
           </Reveal>
@@ -217,7 +228,9 @@ export function DigitalProducts() {
                   <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.04em] text-white sm:text-[1.75rem]">Mentoria: Criação de Sites com IA.</h3>
                   <p className="mt-3 text-sm leading-relaxed text-slate-400">Aprenda a desenvolver sites profissionais utilizando inteligência artificial com uma orientação mais direcionada e organizada. Aprofunde seus conhecimentos, entenda o processo e desenvolva projetos para diferentes tipos de negócios.</p>
                   <div className="mt-5 flex flex-wrap items-baseline gap-3">
-                    <span className="text-xl font-semibold tracking-[-0.03em] text-white">Preço negociável</span>
+                    {mentoringOriginalPrice?.trim() && <span className="text-sm text-slate-500 line-through">{formatConfiguredPrice(mentoringOriginalPrice)}</span>}
+                    <span className="text-3xl font-bold tracking-[-0.05em] text-white">{formatConfiguredPrice(mentoringPromoPrice)}</span>
+                    {mentoringOriginalPrice?.trim() && mentoringPromoPrice?.trim() && <span className="rounded-md bg-blue-500/15 px-2 py-1 text-[10px] font-bold tracking-wide text-blue-300">OFERTA</span>}
                   </div>
                 </div>
               </div>
@@ -232,7 +245,7 @@ export function DigitalProducts() {
               </div>
               <div className="mt-8 flex flex-col gap-3 border-t border-[#26364D] pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-xs text-slate-500">Mentoria online · Acompanhamento</span>
-                <WhatsAppLink phone={whatsappNumber} product="Mentoria: Criação de Sites com IA">CONVERSAR SOBRE A MENTORIA</WhatsAppLink>
+                <PurchaseLink href={mentoringCheckout}>QUERO PARTICIPAR DA MENTORIA</PurchaseLink>
               </div>
             </article>
           </Reveal>
