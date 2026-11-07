@@ -79,7 +79,7 @@ export function DigitalProducts() {
   const mentoringCheckout = (import.meta.env.VITE_CAKTO_MENTORIA_URL as string | undefined) || "https://pay.cakto.com.br/k48vpwz_1292667";
   const mentoringImage = import.meta.env.VITE_MENTORIA_IMAGE_URL as string | undefined;
   const mentoringOriginalPrice = import.meta.env.VITE_MENTORIA_PRECO_ORIGINAL as string | undefined;
-  const mentoringPromoPrice = import.meta.env.VITE_MENTORIA_PRECO_PROMOCIONAL as string | undefined;
+  const mentoringPromoPrice = (import.meta.env.VITE_MENTORIA_PRECO_PROMOCIONAL as string | undefined) || "279";
 
   return (
     <section id="produtos-digitais" className="relative overflow-hidden bg-[#080B12] py-24 text-white sm:py-32">
@@ -171,9 +171,7 @@ export function DigitalProducts() {
                   <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.04em] text-white sm:text-[1.75rem]">Pack de Prompts para Sites Profissionais.</h3>
                   <p className="mt-3 text-sm leading-relaxed text-slate-400">Tenha modelos de prompts organizados por nichos para facilitar a criação de sites com inteligência artificial e acelerar o desenvolvimento dos seus projetos.</p>
                   <div className="mt-5 flex flex-wrap items-baseline gap-3">
-                    <span className="text-sm text-slate-500 line-through">R$ 19,90</span>
-                    <span className="text-3xl font-bold tracking-[-0.05em] text-white">R$ 9,90</span>
-                    <span className="rounded-md bg-blue-500/15 px-2 py-1 text-[10px] font-bold tracking-wide text-blue-300">50% OFF</span>
+                    <span className="text-3xl font-bold tracking-[-0.05em] text-white">R$ 29,90</span>
                   </div>
                 </div>
               </div>
