@@ -205,9 +205,9 @@ export function DigitalProducts() {
             <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#26364D] bg-[#101827] p-6 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.9)] transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/50 hover:shadow-[0_34px_90px_-42px_rgba(37,99,235,0.22)] sm:p-8">
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/70 to-transparent opacity-70" />
               <div className="grid gap-7 sm:grid-cols-[0.78fr_1.22fr] sm:items-center">
-                <div className="relative mx-auto flex aspect-[4/5] w-full max-w-[230px] flex-col justify-between overflow-hidden rounded-2xl border border-blue-300/25 bg-[radial-gradient(circle_at_75%_18%,rgba(59,130,246,0.55),transparent_38%),linear-gradient(145deg,#172B49,#080D18_72%)] p-5 shadow-2xl transition-transform duration-500 group-hover:rotate-[-1deg] group-hover:scale-[1.02]">
+                <div className="relative mx-auto flex aspect-video w-full max-w-[280px] flex-col justify-between overflow-hidden rounded-2xl border border-blue-300/25 bg-[#080D18] p-2 shadow-2xl transition-transform duration-500 group-hover:rotate-[-1deg] group-hover:scale-[1.02]">
                   {mentoringImage ? (
-                    <img src={mentoringImage} alt="Imagem oficial da Mentoria: Criação de Sites com IA" className="absolute inset-0 h-full w-full object-cover" />
+                    <img src={mentoringImage} alt="Imagem oficial da Mentoria: Criação de Sites com IA" className="absolute inset-0 h-full w-full object-contain" />
                   ) : (
                     <>
                       <div className="flex items-center justify-between text-[9px] font-bold tracking-[0.22em] text-blue-200 uppercase">
