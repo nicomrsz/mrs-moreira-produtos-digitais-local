@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookOpen, Check, Layers3, Sparkles } from "lucide-react";
+import { ArrowUpRight, BookOpen, Check, GraduationCap, Layers3, Sparkles, Video } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 
 const ebookBenefits = [
@@ -18,6 +18,23 @@ const promptBenefits = [
   "Mais praticidade durante a criação.",
   "Material de apoio para ferramentas de IA.",
 ];
+
+const mentoringBenefits = [
+  "Orientação sobre criação de sites com IA.",
+  "Acompanhamento do processo de desenvolvimento.",
+  "Orientações para estruturar sites profissionais.",
+  "Aplicação prática em diferentes nichos.",
+  "Ajuda para melhorar prompts e resultados.",
+  "Orientações para desenvolver projetos próprios.",
+];
+
+function formatConfiguredPrice(value?: string) {
+  if (!value?.trim()) return "A definir";
+  const normalized = value.replace(/[^0-9,.-]/g, "").replace(/\./g, "").replace(",", ".");
+  const amount = Number(normalized);
+  if (!Number.isFinite(amount)) return value;
+  return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(amount);
+}
 
 const niches = [
   "Barbearias",
@@ -59,6 +76,10 @@ function PurchaseLink({ href, children }: { href?: string; children: string }) {
 export function DigitalProducts() {
   const ebookCheckout = import.meta.env.VITE_CAKTO_EBOOK_URL as string | undefined;
   const promptsCheckout = import.meta.env.VITE_CAKTO_PROMPTS_URL as string | undefined;
+  const mentoringCheckout = import.meta.env.VITE_CAKTO_MENTORIA_URL as string | undefined;
+  const mentoringImage = import.meta.env.VITE_MENTORIA_IMAGE_URL as string | undefined;
+  const mentoringOriginalPrice = import.meta.env.VITE_MENTORIA_PRECO_ORIGINAL as string | undefined;
+  const mentoringPromoPrice = import.meta.env.VITE_MENTORIA_PRECO_PROMOCIONAL as string | undefined;
 
   return (
     <section id="produtos-digitais" className="relative overflow-hidden bg-[#080B12] py-24 text-white sm:py-32">
@@ -77,7 +98,7 @@ export function DigitalProducts() {
           </p>
         </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-7">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 lg:gap-7">
           <Reveal delay={80} className="h-full">
             <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#26364D] bg-[#101827] p-6 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.9)] transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/50 hover:shadow-[0_34px_90px_-42px_rgba(37,99,235,0.22)] sm:p-8">
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/70 to-transparent opacity-70" />
@@ -176,6 +197,57 @@ export function DigitalProducts() {
               <div className="mt-8 flex flex-col gap-3 border-t border-[#26364D] pt-6 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-xs text-slate-500">Material digital · Acesso online</span>
                 <PurchaseLink href={promptsCheckout}>QUERO MEU PACK DE PROMPTS</PurchaseLink>
+              </div>
+            </article>
+          </Reveal>
+
+          <Reveal delay={240} className="h-full">
+            <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#26364D] bg-[#101827] p-6 shadow-[0_28px_80px_-48px_rgba(0,0,0,0.9)] transition-all duration-500 hover:-translate-y-1 hover:border-blue-400/50 hover:shadow-[0_34px_90px_-42px_rgba(37,99,235,0.22)] sm:p-8">
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/70 to-transparent opacity-70" />
+              <div className="grid gap-7 sm:grid-cols-[0.78fr_1.22fr] sm:items-center">
+                <div className="relative mx-auto flex aspect-[4/5] w-full max-w-[230px] flex-col justify-between overflow-hidden rounded-2xl border border-blue-300/25 bg-[radial-gradient(circle_at_75%_18%,rgba(59,130,246,0.55),transparent_38%),linear-gradient(145deg,#172B49,#080D18_72%)] p-5 shadow-2xl transition-transform duration-500 group-hover:rotate-[-1deg] group-hover:scale-[1.02]">
+                  {mentoringImage ? (
+                    <img src={mentoringImage} alt="Imagem oficial da Mentoria: Criação de Sites com IA" className="absolute inset-0 h-full w-full object-cover" />
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-between text-[9px] font-bold tracking-[0.22em] text-blue-200 uppercase">
+                        <span>MRS MOREIRA®</span><GraduationCap className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="mb-3 h-1 w-10 rounded-full bg-blue-400" />
+                        <p className="text-[10px] font-semibold tracking-[0.2em] text-blue-200 uppercase">Mentoria online</p>
+                        <h3 className="mt-2 text-2xl leading-[1.05] font-bold tracking-[-0.05em] text-white">Crie sites <span className="text-blue-300">com IA.</span></h3>
+                      </div>
+                      <div className="flex items-end justify-between">
+                        <span className="text-[9px] tracking-[0.18em] text-slate-400 uppercase">Acompanhamento</span>
+                        <div className="grid h-10 w-10 place-items-center rounded-full border border-blue-300/30 bg-blue-400/10 text-blue-200"><Video className="h-5 w-5" /></div>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div>
+                  <span className="inline-flex rounded-full border border-blue-400/25 bg-blue-400/10 px-3 py-1.5 text-[10px] font-bold tracking-[0.18em] text-blue-300 uppercase">Acompanhamento e aprendizado</span>
+                  <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.04em] text-white sm:text-[1.75rem]">Mentoria: Criação de Sites com IA.</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-400">Aprenda a desenvolver sites profissionais utilizando inteligência artificial com uma orientação mais direcionada e organizada. Aprofunde seus conhecimentos, entenda o processo e desenvolva projetos para diferentes tipos de negócios.</p>
+                  <div className="mt-5 flex flex-wrap items-baseline gap-3">
+                    {mentoringOriginalPrice?.trim() && <span className="text-sm text-slate-500 line-through">{formatConfiguredPrice(mentoringOriginalPrice)}</span>}
+                    <span className="text-3xl font-bold tracking-[-0.05em] text-white">{formatConfiguredPrice(mentoringPromoPrice)}</span>
+                    {mentoringOriginalPrice?.trim() && mentoringPromoPrice?.trim() && <span className="rounded-md bg-blue-500/15 px-2 py-1 text-[10px] font-bold tracking-wide text-blue-300">OFERTA</span>}
+                  </div>
+                </div>
+              </div>
+              <div className="my-7 h-px bg-gradient-to-r from-transparent via-[#33445D] to-transparent" />
+              <div className="grid flex-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                {mentoringBenefits.map((benefit) => (
+                  <div key={benefit} className="flex items-start gap-2.5 text-[13px] leading-relaxed text-slate-300">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" strokeWidth={2.5} />
+                    <span>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-col gap-3 border-t border-[#26364D] pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <span className="text-xs text-slate-500">Mentoria online · Acompanhamento</span>
+                <PurchaseLink href={mentoringCheckout}>QUERO PARTICIPAR DA MENTORIA</PurchaseLink>
               </div>
             </article>
           </Reveal>
